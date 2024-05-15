@@ -4,10 +4,10 @@ home_towns = ["Porcupine Crest", "Nyuknyuk", "Wyiota", "Springfield", "Godric's 
 favorite_food = ['pizza', 'cheeseburgers', 'steak', 'beer', 'chocolate frogs', 'lasagne', 'corned beef sandwiches']
 
 valid_id = False
-while valid_id == False:
-    student_query=int(input(f'Which student ID number do you wish to look up (1-{len(names)}]? '))
-    student_index = 0
-    if student_query <= len(names) and student_query > 0:
+student_index = 0
+while not valid_id:
+    student_query = int(input(f'Which student ID number do you wish to look up (1-{len(names)}]? '))
+    if len(names) >= student_query > 0:
         valid_id = True
         student_index = student_query - 1
         print(f'Student {student_query} is named {names[student_index]}')
@@ -16,7 +16,8 @@ while valid_id == False:
 
 # with valid ID, prompt for food or hometown
 valid_category = False
-while valid_category == False:
+category = ''
+while not valid_category:
     category = input("Would you like the student's Home Town ('h') or Favorite Food ('f')? ").lower()
     if category == 'h' or category == 'f':
         valid_category = True
