@@ -5,26 +5,36 @@ favorite_food = ['pizza', 'cheeseburgers', 'steak', 'beer', 'chocolate frogs', '
 
 valid_id = False
 student_index = 0
-while not valid_id:
-    student_query = int(input(f'Which student ID number do you wish to look up (1-{len(names)}]? '))
-    if len(names) >= student_query > 0:
-        valid_id = True
-        student_index = student_query - 1
-        print(f'Student {student_query} is named {names[student_index]}')
-    else:
-        print("That's not a valid ID.")
+repeat_all = True
 
-# with valid ID, prompt for food or hometown
-valid_category = False
-category = ''
-while not valid_category:
-    category = input("Would you like the student's Home Town ('h') or Favorite Food ('f')? ").lower()
-    if category == 'h' or category == 'f':
-        valid_category = True
-    else:
-        print("That's not a valid search type. 'f' or 'h' only, please.")
+while repeat_all:
+    while not valid_id:
+        student_query = int(input(f'Which student ID number do you wish to look up (1-{len(names)}]? '))
+        if len(names) >= student_query > 0:
+            valid_id = True
+            student_index = student_query - 1
+            print(f'Student {student_query} is named {names[student_index]}')
+        else:
+            print("That's not a valid ID.")
 
-if category == 'h':
-    print(f"{names[student_index]}'s home town is {home_towns[student_index]}")
-if category == 'f':
-    print(f"{names[student_index]}'s favorite food is {favorite_food[student_index]}")
+    # with valid ID, prompt for food or hometown
+    valid_category = False
+    category = ''
+    while not valid_category:
+        category = input("Would you like the student's Home Town ('h') or Favorite Food ('f')? ").lower()
+        if category == 'h' or category == 'f':
+            valid_category = True
+        else:
+            print("That's not a valid search type. 'f' or 'h' only, please.")
+
+    if category == 'h':
+        print(f"{names[student_index]}'s home town is {home_towns[student_index]}")
+    if category == 'f':
+        print(f"{names[student_index]}'s favorite food is {favorite_food[student_index]}")
+
+    do_again = input("Would you like to learn about another student (y/n)? ")
+    if do_again.lower() == 'y':
+        repeat_all = True
+        valid_id = False
+    else:
+        repeat_all = False
